@@ -1,0 +1,47 @@
+@{
+    ViewBag.Title = "Habitacion 1";
+}
+@if(Escape.ErroresSala >= 1){
+    <script>alert("Te equivocaste compa, proba devuelta");</script>
+}
+
+<script> 
+    let cont = 0;
+    function sumarErrorPista(text){
+        alert(text);
+        cont++;
+        document.getElementById("cont").value=(cont);
+    }
+</script>
+<h1 class="display-4"> Descubri el codigo secreto </h1>
+<p class="lead"> Bueno, en la siguiente imagen veras el lenguaje tradicional de esta sala junto con su traduccion y un mensaje que es el codigo para salir </p> 
+<hr class="my-4">
+<img class="imgs" src="/sources/incognita1.jpg"> 
+<form method="post" action='@Url.Action("Habitacion", "Escape")'>
+    <div class="form-row align-items-center">
+        <div class="col-auto">
+            <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Ingrese la clave" name="clave" autocomplete="off" required>
+        </div>
+        <input type="hidden" name="sala" value=@ViewBag.EstadoJuego>
+        <input type="hidden" name="pistas" value=cont id="cont">
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Aceptar</button>
+        </div>
+    </div>
+</form>
+
+<br>
+@if(Escape.ErroresSala >= 2){
+    <input class="btn btn-dark" type="button" onclick="sumarErrorPista('Lo que le paso a los bosteros despues de la final')" value="Pista 1">
+}
+
+@if(Escape.ErroresSala >= 3){
+    <button class="btn btn-dark" onclick="sumarErrorPista('Tomala vos damela a mi el que no salta ________ (no es exactamente esto pero es esto conjugado a otra manera)')">Pista 2</button>
+}
+@if(Escape.ErroresSala >= 5){
+    Escape.sumarAlTimer();
+    <button class="btn btn-dark" type="button" onclick="sumarErrorPista('moriste en madrid')">Solucion</button>
+}
+
+
+

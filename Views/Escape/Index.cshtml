@@ -1,0 +1,15 @@
+@{
+    ViewBag.Title = "Bienvenido";
+}
+
+<h1 class="display-4">Bienvenido a la mejor sala de escape </h1>
+<p class="lead"> Para arrancar ingresa tu nombre y toca el boton de aca abajo </p>
+<hr class="my-4">
+<form method="post" action='@Url.Action("Comenzar", "Escape")'>
+    <div class="form-row align-items-center">
+        <div class="col-auto">
+            <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Ingrese tu nombre" name="nombre" required>
+        </div>
+    </div>
+    <input type="submit" class="btn btn-primary btn-lg" href='@Url.Action("Comenzar","Escape")' role="button" value="Comenzar">
+</form>

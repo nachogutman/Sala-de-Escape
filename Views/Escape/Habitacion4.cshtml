@@ -1,0 +1,57 @@
+@{
+    ViewBag.title = "Habitacion 4";
+}
+@if(Escape.ErroresSala >= 1){
+    <script>alert("Te equivocaste compa, proba devuelta");</script>
+}
+<script> 
+    let cont = 0;
+    function sumarErrorPista(text){
+        alert(text);
+        cont++;
+        document.getElementById("cont").value=(cont);
+    }
+</script>
+<H1 class="display-4">Llegaste a la habitacion final, aca vas a tener que resolver un enigma numerico</h1>
+<p class="lead">Presta atencion a los texos debajo de los numero para poder desifrar el codigo final para probar que sos mas inteligente que algunos... </p>
+<hr class="my-4">
+<img class="imgs" src="/sources/tristelme.jpg" height="400px">
+
+<ul>
+    <il> 682: Un numero es correcto y esta bien posicionado </il>
+    <br>
+    <il> 641: Un numero es correcto pero esta mal posicionado </il>
+    <br>
+    <il> 296: Dos numeros son correctos pero su posicion no </il>
+    <br>
+    <il> 738: Nada de esto es correcto </il>
+    <br>
+    <il> 589: Un numero de estos es correcto pero esta mal posicionado </il>
+
+</ul>
+
+
+<form class="forms" method="post" action="Habitacion">
+    <div class="form-row align-items-center">
+        <div class="col-auto">
+            <input type="number" class="form-control mb-2" id="inlineFormInput" placeholder="Ingrese el codigo" name="clave" autocomplete="off" required>
+        </div>
+        <input type="hidden" name="pistas" value=cont id="cont">
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Aceptar</button>
+        </div>
+        <input type="hidden" name="sala" value=@ViewBag.EstadoJuego>
+    </div>
+</form>
+
+<br>
+@if(Escape.ErroresSala >= 2){
+    <button class="btn btn-dark" type="button" onclick="sumarErrorPista('El 6 es incorrecto')">Pista 1</button>
+}
+@if(Escape.ErroresSala >= 3){
+    <button class="btn btn-dark" type="button" onclick="sumarErrorPista('Representa una fecha moito importante')">Pista 2</button>
+}
+@if(Escape.ErroresSala >= 5){
+    Escape.sumarAlTimer();
+    <button class="btn btn-dark" type="button" onclick="sumarErrorPista('912')">Solucion</button>
+}

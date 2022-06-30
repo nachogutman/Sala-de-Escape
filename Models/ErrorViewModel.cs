@@ -1,8 +1,11 @@
-namespace Sala_de_Escape.Models;
+using System;
 
-public class ErrorViewModel
+namespace SalaDeEscape.Models
 {
-    public string? RequestId { get; set; }
+    public class ErrorViewModel
+    {
+        public string RequestId { get; set; }
 
-    public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+    }
 }

@@ -1,0 +1,42 @@
+@{
+    ViewBag.title = "Habitacion 3";
+}
+@if(Escape.ErroresSala >= 1){
+    <script>alert("Te equivocaste compa, proba devuelta");</script>
+}
+<script> 
+    let cont = 0;
+    function sumarErrorPista(text){
+        alert(text);
+        cont++;
+        document.getElementById("cont").value=(cont);
+    }
+</script>
+<h1 class="display-4"> Para gente que de verdad juna de fulbo</h1>
+<p class="lead"> La vuelta de la final mas importante de la historia se jugo en Madrid, pero esto debido a incidentes antes del partido original en el Monumental. Solo para verdaderos sabios del futbol, que dia se jugaba el partido original: </p>
+<hr class="my-4">
+<img class="imgs" src="/sources/lloron.jpg" height="400px">
+<form class="forms" method="post" action="Habitacion">
+    <div class="form-row align-items-center">
+        <div class="col-auto">
+            <input type="date" class="form-control mb-2" id="inlineFormInput" placeholder="Ingrese el dia" name="clave" autocomplete="off" required>
+        </div>
+        <input type="hidden" name="pistas" value=cont id="cont">
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Aceptar</button>
+        </div>
+        <input type="hidden" name="sala" value=@ViewBag.EstadoJuego>
+    </div>
+</form>
+
+<br>
+@if(Escape.ErroresSala >= 2){
+    <button class="btn btn-dark" type="button" onclick="sumarErrorPista('El dia era uno de los numeros de camiseta de la sala anterior')">Pista 1</button>
+}
+@if(Escape.ErroresSala >= 3){
+    <button class="btn btn-dark" type="button" onclick="sumarErrorPista('Mes del cumple de Enzo Francescoli')">Pista 2</button>
+}
+@if(Escape.ErroresSala >= 5){
+    Escape.sumarAlTimer();
+    <button class="btn btn-dark" type="button" onclick="sumarErrorPista('24/11/2018')">Solucion</button>
+}

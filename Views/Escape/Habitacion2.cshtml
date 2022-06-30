@@ -1,0 +1,46 @@
+@{
+    ViewBag.title = "Habitacion 2";
+}
+@if(Escape.ErroresSala >= 1){
+    <script>alert("Te equivocaste compa, proba devuelta");</script>
+}
+<script> 
+    let cont = 0;
+    function sumarErrorPista(text){
+        alert(text);
+        cont++;
+        document.getElementById("cont").value=(cont);
+    }
+</script>
+
+<h1 class="display-4"> Adivina los tres jugadores restantes </h1>
+<p class="lead"> En esta habitacion debes descubrir los tres jugadores que faltan, este el equipo titular de River en la final de madrid </p>
+<div class="alert alert-dark" role="alert">
+  Aclaracion: "Apellido10 Apellido24 Apellido20"
+</div>
+<hr class="my-4">
+<img class="imgs" src="/sources/formacion.jpg" height="400px"> 
+<form class="forms" method="post" action="Habitacion">
+    <div class="form-row align-items-center">
+        <div class="col-auto">
+            <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Ingrese los apellidos" name="clave" autocomplete="off" required>
+        </div>
+        <input type="hidden" name="pistas" value=cont id="cont">
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Aceptar</button>
+        </div>
+        <input type="hidden" name="sala" value=@ViewBag.EstadoJuego>
+    </div>
+</form>
+
+<br>
+@if(Escape.ErroresSala >= 2){
+    <button class="btn btn-dark" type="button" onclick="sumarErrorPista('Los apellidos 10 y 24 son de los mas comunes de argentina')">Pista 1</button>
+}
+@if(Escape.ErroresSala >= 3){
+    <button class="btn btn-dark" type="button" onclick="sumarErrorPista('El apellido 20 es usado en la cabeza por los militares o los motociclistas')">Pista 2</button>
+}
+@if(Escape.ErroresSala >= 5){
+    Escape.sumarAlTimer();
+    <button class="btn btn-dark" type="button" onclick="sumarErrorPista('Martinez Perez Casco')">Solucion</button>
+}
